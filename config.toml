@@ -1,0 +1,93 @@
+DefaultContentLanguage = "zh-cn"
+author = "guttatus"
+baseURL = "https://guttatus.github.io"
+copyright = "Copyright &copy;guttatus,<a href=\"https://creativecommons.org/licenses/by-sa/4.0/deed.zh\">CC BY-SA</a>"
+disqusShortname = "guttatus"
+enableInlineShortcodes = true
+footnoteReturnLinkContents = "^"
+googleAnalytics = "UA-FAKE" ## or "G-xxxxxxxx" in Google Analytics v4, in hugo v0.82+
+hasCJKLanguage = true
+languageCode = "cn"
+theme = "tokiwa"
+title = "Guttatus's Blog"
+
+[markup]
+[markup.highlight]
+style = "monokailight"
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.tableOfContents]
+startLevel = 2
+endLevel = 5
+ordered = false
+
+[params]
+bannerFont = "fonts/exampleFont" 
+description = """
+虽千万人吾往矣
+""" 
+env = "production" # for Google Analytics and DISQUS.
+favicon = "img/favicon.png" 
+fuse = true # for searchbox. "JSON" must added to output contents. See [outputs].
+math = true # for introducing $KaTEX$
+useChineseFonts = true 
+postDateFormat = "2006-1-2"
+enableGitalk = true
+
+[menu]
+# Shown in the side menu.
+[[menu.main]]
+identifier = "post"
+name = "Posts"
+url = "/post/"
+weight = 1
+[[menu.main]]
+name = "Tags"
+url = "/tags/"
+weight = 2
+
+[[menu.main]]
+name = "Categories"
+url = "/categories/"
+weight = 2
+
+[[menu.main]]
+identifier = "about"
+name = "About"
+url = "/about/"
+weight = 3
+
+[taxonomies]
+category = "categories"
+series = "series"
+tag = "tags"
+[social]
+bilibili = "https://space.bilibili.com/435228864"
+github = "https://github.com/guttatus"
+# gitlab = "http://gitlab.com/"
+# instagram = "http://example.com/"
+mail = "mailto:xingzhiang2020@gmail.com"
+# twitter = "http://twitter.com/"
+# weibo = "http://example.com/"
+# youtube = "http://youtube.com/"
+# zhihu = "http://example.com/"
+# any icon in layouts/partials/svg can be used by the name without the "-line.svg"
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+
+[params.gitalk] 
+clientID = "de25a843e28e54ff3a20" # 您刚才创建Github Application 的 Client ID
+clientSecret = "29e4adfe5bd0d694813a2bddd0f2ab03b5e0f18f" # 您刚才创建Github Application 的 Client Secret
+repo = "guttatus.github.io" # 您的博客的github地址Repository name，例如：xxxx.github.io
+owner = "guttatus" # 您的GitHub ID
+admin= "guttatus" # 您的GitHub ID
+id= "location.pathname" # 文章页面的链接地址就是ID
+labels= "gitalk" # Github issue labels. If you used to use Gitment, you can change it
+perPage= 15 # Pagination size, with maximum 100.
+pagerDirection= "last" # Comment sorting direction, available values are 'last' and 'first'.
+createIssueManually= true # 设置为true，如果是管理员登录，会自动创建issue，如果是false，需要管理员手动添加第一个评论(issue)
+distractionFreeMode= false # Enable hot key (cmd|ctrl + enter) submit comment.
+

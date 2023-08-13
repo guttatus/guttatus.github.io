@@ -1,0 +1,4 @@
+[submodule "themes/tokiwa"]
+	path = themes/tokiwa
+	url = git@github.com:guttatus/hugo-theme-tokiwa.git
+	branch = gitalk
