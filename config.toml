@@ -51,13 +51,19 @@ weight = 2
 [[menu.main]]
 name = "Categories"
 url = "/categories/"
-weight = 2
+weight = 3
 
 [[menu.main]]
 identifier = "about"
 name = "About"
 url = "/about/"
-weight = 3
+weight = 4
+
+[[menu.main]]
+identifier = "link"
+name = "Link"
+url = "/link/"
+weight = 5
 
 [taxonomies]
 category = "categories"
