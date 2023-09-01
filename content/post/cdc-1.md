@@ -10,6 +10,7 @@ categories = [
     "IC",
 ]
 toc = true
+autonumbering = true
 +++
 
 ##  时钟域概念

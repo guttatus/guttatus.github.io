@@ -17,3 +17,4 @@ description: "虽千万人吾往矣"
 ## 友链
 
 - [Chasing1020](https://chasing1020.github.io)
+- [zidea's blog](https://blog.zidea.site/)
