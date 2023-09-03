@@ -28,6 +28,7 @@ bannerFont = "fonts/exampleFont"
 description = """
 虽千万人吾往矣
 """ 
+fancybox = true
 env = "production" # for Google Analytics and DISQUS.
 favicon = "img/favicon.png" 
 fuse = true # for searchbox. "JSON" must added to output contents. See [outputs].
