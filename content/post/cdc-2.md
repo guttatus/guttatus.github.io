@@ -99,3 +99,44 @@ autonumbering = true
 
 ![togpls_wave](/img/posts/cdc/togpls_wave.png)
 
+####  闭环 -- 带反馈的多周期路径规划
+
+在使用多周期路径规划时有一项重要的的技术是将使能信号传递回发送时钟域，下图展示了这项技术的具体细节。
+
+
+![Multi-Cycle Path (MCP ) formulation toggle-pulse generation with acknowledge](/img/posts/cdc/mcpcloseloop.png)
+
+确认反馈信号b_ack生成了一个确认脉冲aack被用于一个1状态有穷状态机READY-BUSY的输入，这个状态机生成ready信号（aready）用于指示当前改变数据输入（adatain）的值是安全的。一旦aready信号拉高，发送端就可以发送新数据（adatain）和附随的asend控制信号。
+
+需要注意的是，这种机制假设接收时钟域总是准备好了接收通过多周期路径规划同步的下个多比特数据。
+
+####  闭环 -- 带确认反馈的多周期路径规划
+下图展示了一种多周期路径规划的完全响应式变体。这种变体只有当接收时钟域使用一个bload脉冲来确认接收数据后才将使能信号作为确认信号发回发送时钟域。
+
+![Multi-Cycle Path (MCP ) formulation toggle-pulse generation with ready-ack](/img/posts/cdc/mcpcloseloopwithack.png)
+
+接收时钟域有一个1状态有穷状态机WAIT-READY，这个状态机在数据寄存器的有效时发送一个valid信号（bvalid）到接收逻辑。数据没有被实际加载知道接收逻辑确认数据被加载通过对bload信号的断言。直到数据被确认加载，发送时钟域才会发送一个反馈信号（b_ack)到接收时钟域。
+
+### FIFO策略
+
+至少有两种FIFO策略可以用于解决多比特信号跨时钟域问题：
+
+1. 异步FIFO
+2. 二深度FIFO
+
+#### 使用异步FIFO解决多比特信号跨时钟域问题
+不管是传递多比特数据还是传递多比特控制信号，都可以通过异步FIFO来完成。异步FIFO是共享存储器或寄存器缓冲区，其中数据从写时钟域插入，从读时钟域删除。由于发送器和接收器都在各自的时钟域内运行，因此使用双端口缓冲区（例如 FIFO）是在时钟域之间传递多位值的安全方法。
+
+只要FIFO未满，标准异步FIFO就允许插入多个数据或控制字。只要FIFO不为空，就可以提取多个数据或控制字。
+
+[异步FIFO](https://guttatus.github.io/post/asyn-fifo/)给出了异步FIFO的原理和实现。
+
+#### 使用二深度FIFO解决多比特信号跨时钟域问题
+二深度FIFO为异步FIFO的简化变体，由于FIFO深度只有2，所以地址只有1bit,不需要使用格雷码编码。下图给出了二深度FIFO的原理图。
+
+![2deepfifo](/img/posts/cdc/2deepfifo.png)
+
+由于FIFO深度只有2，所以只适合某些特定场景,不如异步FIFO通用。
+
+
+
