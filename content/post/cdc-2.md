@@ -37,7 +37,7 @@ autonumbering = true
 ![Consolidating control signals before passing between clock domains](/img/posts/cdc/onesingle.png)
 
 #### 实例2 -- 两个相移定序控制信号
-如下图所示，有两个使能信号*ld1*和*ld2*，它们依次从发送时钟域驱动到接收时钟域，以控制两级流水寄存器寄存数据。问题在于，在发送时钟域中，b_ld1信号正好稍微在b_ld2信号有效前结束有效，这就导致在接收时钟域上升沿采集b_ld1和b_ld2脉冲信号时产生一个细微的间隙。在同步后，两个使能控制信号间隔了两个时钟周期，而不是一个时钟周期，导致在接收时钟域的使能控制信号链中形成一个单周期间隙。这样就导致a2没有被及时加载到第二个寄存器。这里需要注意的是，如果a2能保持一直有效，在经过一个时钟周期间隔后，a2仍能被加载到第二个寄存器中，但是这里要求严格的流失操作，所以问题就出现了。如果a2的数据不能保持一直有效，那么就造成a2的数据丢失。
+如下图所示，有两个使能信号*ld1*和*ld2*，它们依次从发送时钟域驱动到接收时钟域，以控制两级流水寄存器寄存数据。问题在于，在发送时钟域中，`b_ld1`信号正好稍微在`b_ld2`信号有效前结束有效，这就导致在接收时钟域上升沿采集`b_ld1`和`b_ld2`脉冲信号时产生一个细微的间隙。在同步后，两个使能控制信号间隔了两个时钟周期，而不是一个时钟周期，导致在接收时钟域的使能控制信号链中形成一个单周期间隙。这样就导致`a2`没有被及时加载到第二个寄存器。这里需要注意的是，如果`a2`能保持一直有效，在经过一个时钟周期间隔后，`a2`仍能被加载到第二个寄存器中，但是这里要求严格的流失操作，所以问题就出现了。如果`a2`的数据不能保持一直有效，那么就造成`a2`的数据丢失。
 
 ![Passing sequential control signals between clock domains](/img/posts/cdc/phaseshift.png)
 
@@ -106,7 +106,7 @@ autonumbering = true
 
 ![Multi-Cycle Path (MCP ) formulation toggle-pulse generation with acknowledge](/img/posts/cdc/mcpcloseloop.png)
 
-确认反馈信号b_ack生成了一个确认脉冲aack被用于一个1状态有穷状态机READY-BUSY的输入，这个状态机生成ready信号（aready）用于指示当前改变数据输入（adatain）的值是安全的。一旦aready信号拉高，发送端就可以发送新数据（adatain）和附随的asend控制信号。
+确认反馈信号b_ack生成了一个确认脉冲`aack`被用于一个1状态有穷状态机READY-BUSY的输入，这个状态机生成`ready`信号（`aready`）用于指示当前改变数据输入（`adatain`）的值是安全的。一旦aready信号拉高，发送端就可以发送新数据（`adatain`）和附随的asend控制信号。
 
 需要注意的是，这种机制假设接收时钟域总是准备好了接收通过多周期路径规划同步的下个多比特数据。
 
@@ -115,7 +115,7 @@ autonumbering = true
 
 ![Multi-Cycle Path (MCP ) formulation toggle-pulse generation with ready-ack](/img/posts/cdc/mcpcloseloopwithack.png)
 
-接收时钟域有一个1状态有穷状态机WAIT-READY，这个状态机在数据寄存器的有效时发送一个valid信号（bvalid）到接收逻辑。数据没有被实际加载知道接收逻辑确认数据被加载通过对bload信号的断言。直到数据被确认加载，发送时钟域才会发送一个反馈信号（b_ack)到接收时钟域。
+接收时钟域有一个1状态有穷状态机WAIT-READY，这个状态机在数据寄存器的有效时发送一个`valid`信号（`bvalid`）到接收逻辑。数据没有被实际加载知道接收逻辑确认数据被加载通过对`bload`信号的断言。直到数据被确认加载，发送时钟域才会发送一个反馈信号（`b_ack``)到接收时钟域。
 
 ### FIFO策略
 
