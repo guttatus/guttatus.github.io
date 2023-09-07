@@ -51,8 +51,7 @@ autonumbering = true
 
 ##### 读空信号的产生
 读空信号的产生比较简单，需要比读指针`rgraynext`和同步到读时钟域的写指针`rq2_wptr`的值是否一致即可。下面给出Verilog描述。
-``` Verilogtu
-  
+``` Verilog  
 always @(posedge rclk or negedge rrst_n) begin
   if(!rrst_n) begin
     rempty <= 1'b1;
