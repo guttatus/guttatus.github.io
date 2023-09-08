@@ -49,6 +49,14 @@ autonumbering = true
 #### RTL 实现
 异步FIFO（样式1）的RTL实现在[guttatus/async_fifo/style1](https://github.com/guttatus/verilog-examples/tree/main/FIFO/async_fifo/style1)中给出，这里只对代码中的关键部分进行阐述。
 
+##### 格雷码计数器
+下图展示了第一种样式的格雷码计数器，其基本原理为 GaryToBin -> 二进制加法器 -> BinToGray。
+![graycounterstyle1](/img/posts/async-fifo/graycounterstyle1.png)
+
+下图展示了第二种样式的格雷码加法器。与第一种样式相比，第二种样式优化掉了GrayToBin的组合逻辑，使得这种格雷码计数器适用于更高的频率设计。在异步FIFO设计中，我们常采用第二种样式。
+
+![graycounterstyle2](/img/posts/async-fifo/graycounterstyle2.png)
+
 ##### 读空信号的产生
 读空信号的产生比较简单，需要比读指针`rgraynext`和同步到读时钟域的写指针`rq2_wptr`的值是否一致即可。下面给出Verilog描述。
 ``` Verilog  
