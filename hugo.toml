@@ -1,6 +1,6 @@
 DefaultContentLanguage = "zh-cn"
 author = "guttatus"
-baseURL = "https://guttatus.github.io"
+baseURL = "https://guttatus.vercel.app"
 copyright = "Copyright &copy;guttatus,<a href=\"https://creativecommons.org/licenses/by-sa/4.0/deed.zh\">CC BY-SA</a>"
 disqusShortname = "guttatus"
 enableInlineShortcodes = true
