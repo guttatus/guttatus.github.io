@@ -26,7 +26,7 @@ ordered = false
 [params]
 bannerFont = "fonts/exampleFont" 
 description = """
-虽千万人吾往矣
+In the midst of winter, I found there was, within me, an invincible summer.
 """ 
 fancybox = true
 # env = "production" # for Google Analytics and DISQUS.
