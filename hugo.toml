@@ -79,7 +79,7 @@ mail = "mailto:xingzhiang2020@gmail.com"
 # twitter = "http://twitter.com/"
 # weibo = "http://example.com/"
 # youtube = "http://youtube.com/"
-# zhihu = "http://example.com/"
+zhihu = "https://www.zhihu.com/people/xingzhiang"
 # any icon in layouts/partials/svg can be used by the name without the "-line.svg"
 
 [outputs]
